@@ -1,14 +1,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="DemoSuite" verbose ="5" parallel="methods" thread-count="10">
+<suite name="characterTests" verbose ="5" parallel="methods" thread-count="10">
 
     <listeners>
         <listener class-name="utils.ExtentReportListener"></listener>
     </listeners>
 
-    <test name="DemoTest">
+    <test name="characterTests">
         <classes>
-            <class name="test.TestBookAddToShelf"></class>
-            <class name="test.TestBookShelf"></class>
+            <class name="test.TestCharacter">
+                <methods>
+                    <include name="GetCharacterByIdTest"/>
+                    <include name="GetAllCharacterInfoTest"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

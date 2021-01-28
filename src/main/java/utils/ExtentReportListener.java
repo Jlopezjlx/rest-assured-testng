@@ -12,9 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by kohlih on 02-10-2017.
- */
+
 public class ExtentReportListener implements IReporter {
     private ExtentReports extent;
 

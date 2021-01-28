@@ -4,14 +4,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
-
 import java.io.IOException;
+import java.util.Arrays;
 
-/**
- * Created by kohlih on 12-11-2017.
- */
+import pojo.characters;
+
+import javax.swing.plaf.synth.SynthEditorPaneUI;
+
+
 public abstract class BaseAPI {
 
     protected String baseURI;
@@ -19,6 +22,8 @@ public abstract class BaseAPI {
     protected RequestSpecification requestSpecification;
     protected ResponseSpecBuilder responseSpecBuilder;
     protected ResponseSpecification responseSpecification;
+    protected String character;
+    protected String data;
     protected Response apiResponse;
     protected int expectedStatusCode;
 
@@ -36,8 +41,20 @@ public abstract class BaseAPI {
         return apiResponse.asString();
     }
 
-    public <T> T getAPIResponseAsPOJO(Class<T> type) throws IOException {
-        return new ObjectMapper().readValue(getApiResponseAsString(),type);
+    public <T> T getSingleCharacterAsPOJO(Class<T> type) throws IOException {
+        character = getApiResponseAsString();
+        String data = new String(character.substring( 1, character.length() - 1 ));
+        return new ObjectMapper().readValue(data, type);
+    }
+
+    public void getAllCharacterAsPOJOAndPrint() throws IOException {
+        character = getApiResponseAsString();
+        characters[] characters = apiResponse.body().as(pojo.characters[].class);
+        Arrays.stream(characters).forEach(value -> {
+            System.out.print("Character Name: " + value.getName());
+            System.out.print("Portrayed: " + value.getPortrayed());
+            System.out.print("---------------------------");
+        });
     }
 
     public int getExpectedStatusCode() {

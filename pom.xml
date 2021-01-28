@@ -2,7 +2,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.l2a</groupId>
-    <artifactId>restassured-testng-template</artifactId>
+    <artifactId>restassured-testng</artifactId>
     <version>1.0</version>
 
     <dependencies>

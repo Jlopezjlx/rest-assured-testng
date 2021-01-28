@@ -13,18 +13,6 @@ import com.opencsv.CSVReader;
 
 import utils.CSVAnnotation.CSVFileParameters;
 
-/**
- * <p>
- * Class to give Generic dataprovider <br/>
- * Returns 2D array for input to Test class<br/>
- * use the following parameters in your test class:
- * 
- * <pre>
- * testname(int rowNo, Map&lt;String, String&gt; inputDataMap)
- * </pre>
- * 
- * </p>
- */
 public class GenericDataProvider {
 	@DataProvider(name = "dataproviderForTestCase")
 	public Object[][] sampleDataProvider(final Method testMethod) throws IOException {
